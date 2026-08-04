@@ -526,3 +526,125 @@ font-size:36px;
 }
 
 }
+
+/* ===========================
+OPEN SURPRISE BUTTON
+=========================== */
+
+#surpriseBtn{
+display:none;
+opacity:0;
+transform:translateY(20px);
+transition:
+opacity .6s ease,
+transform .6s ease,
+box-shadow .3s ease;
+}
+
+#surpriseBtn:hover{
+box-shadow:
+0 0 18px rgba(0,255,255,.5),
+0 0 35px rgba(255,221,120,.25);
+}
+
+/* ===========================
+PREMIUM CARD EFFECT
+=========================== */
+
+.card{
+position:relative;
+overflow:hidden;
+}
+
+.card::after{
+
+content:"";
+
+position:absolute;
+
+top:-120%;
+left:-60%;
+
+width:220%;
+height:220%;
+
+background:
+linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.08),
+transparent
+);
+
+transform:rotate(20deg);
+
+animation:shine 7s linear infinite;
+
+pointer-events:none;
+
+}
+
+@keyframes shine{
+
+100%{
+
+transform:
+translateX(45%)
+rotate(20deg);
+
+}
+
+}
+
+/* ===========================
+FLOATING STARS
+=========================== */
+
+body::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+pointer-events:none;
+
+background-image:
+
+radial-gradient(circle,#fff6c0 1.5px,transparent 2px),
+
+radial-gradient(circle,#6ffaff 1px,transparent 2px),
+
+radial-gradient(circle,#ffffff 1px,transparent 2px);
+
+background-size:
+
+220px 220px,
+
+180px 180px,
+
+280px 280px;
+
+opacity:.35;
+
+animation:
+floatStars 22s linear infinite;
+
+}
+
+@keyframes floatStars{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(-120px);
+
+}
+
+}
