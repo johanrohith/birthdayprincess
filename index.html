@@ -1,245 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday, Wincy!</title>
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: "Segoe UI", sans-serif;
-}
 
-body{
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:
-    linear-gradient(rgba(10,30,40,.45), rgba(10,30,40,.45)),
-    url("background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+<title>Happy Birthday Wincy</title>
 
-.card{
-    width:90%;
-    max-width:500px;
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(12px);
-    border-radius:24px;
-    padding:35px;
-    text-align:center;
-    animation:fade .8s;
-    box-shadow:0 10px 35px rgba(0,0,0,.25);
-}
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-.hidden{
-    display:none;
-}
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-h1{
-    margin-bottom:18px;
-}
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-p{
-    line-height:1.7;
-    font-size:18px;
-}
-
-button{
-    margin-top:30px;
-    border:none;
-    padding:14px 28px;
-    border-radius:50px;
-    background:#14c9c3;
-    color:white;
-    font-size:17px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-button:hover{
-    transform:scale(1.05);
-}
-
-input{
-    margin-top:20px;
-    width:100%;
-    padding:14px;
-    border-radius:12px;
-    border:none;
-    outline:none;
-    text-align:center;
-    font-size:18px;
-}
-
-.emojis{
-    font-size:42px;
-    margin:25px 0;
-}
-
-#easter{
-    font-size:24px;
-    color:#ffe98a;
-}
-
-#decrypt{
-    font-family:monospace;
-    font-size:20px;
-    line-height:2;
-    white-space:pre-line;
-}
-
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(15px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
-<!-- PAGE 1 -->
-<div class="card" id="page1">
-<h1>🎉 Happy Birthday, Wincy!</h1>
+<div class="overlay"></div>
 
-<p>
-Wishing you a year full of positive energy ahead!<br><br>
-<b>Go shine ✨</b>
+<div class="stars"></div>
+
+<div class="container">
+
+<!-- =========================
+PAGE 1
+========================= -->
+
+<section id="page1" class="page active">
+
+<div class="card">
+
+<div class="ornament">✦ ❀ ✦</div>
+
+<h2 class="title">
+Happy Birthday,
+</h2>
+
+<h1 class="name">
+Wincy!
+</h1>
+
+<p class="wish">
+
+Wishing you a year full of positive energy ahead!
+
+<br><br>
+
+Go shine ✨
+
 </p>
 
-<button onclick="nextPage()">Continue →</button>
-</div>
+<button id="continueBtn">
 
-<!-- PAGE 2 -->
-<div class="card hidden" id="page2">
+Continue →
 
-<h2>A tiny challenge...</h2>
-
-<p style="margin-top:18px;">
-Which Disney princess do these emojis represent?
-</p>
-
-<div class="emojis">
-🏰 🧞‍♂️ 🐅 ✨
-</div>
-
-<input
-id="answer"
-placeholder="Type your answer...">
-
-<button onclick="checkAnswer()">Check</button>
-
-<p id="wrong" style="color:#ffd1d1;margin-top:15px;"></p>
-
-</div>
-
-<!-- PAGE 3 -->
-<div class="card hidden" id="page3">
-
-<div id="easter">
-✨ Welcome, Princess of Agrabah. ✨
-</div>
-
-<div id="decrypt" class="hidden"></div>
-
-<button
-id="surpriseBtn"
-class="hidden"
-onclick="window.open('https://open.spotify.com/playlist/5jqM5FfQ0YQX5nlCCpXtgH?si=w2Eu7YoXSvWdhQ4o7HEZnA&utm_source=copy-link&pi=2mDQ5ivnQXqJX','_blank')">
-🎁 Open Surprise
 </button>
 
 </div>
 
-<script>
+</section>
 
-function nextPage(){
-page1.classList.add("hidden");
-page2.classList.remove("hidden");
-}
+<!-- =========================
+PAGE 2
+========================= -->
 
-function checkAnswer(){
+<section id="page2" class="page">
 
-let ans=document.getElementById("answer")
-.value
-.trim()
-.toLowerCase();
+<div class="card">
 
-if(
-ans==="jasmine" ||
-ans==="princess jasmine"
-){
+<h2 class="heading">
 
-page2.classList.add("hidden");
-page3.classList.remove("hidden");
+A tiny challenge...
 
-setTimeout(startDecrypt,1000);
+</h2>
 
-}else{
+<p class="question">
 
-document.getElementById("wrong").innerHTML=
-"Try again 😊";
+Which Disney princess do these emojis represent?
 
-}
+</p>
 
-}
+<div class="emoji">
 
-function startDecrypt(){
+🏰 🧞‍♂️ 🐅 ✨
 
-document.getElementById("easter").style.display="none";
+</div>
 
-let d=document.getElementById("decrypt");
+<input
 
-d.classList.remove("hidden");
+type="text"
 
-const frames=[
-"Decrypting surprise...\n\n█░░░░░░░░░ 10%",
-"Decrypting surprise...\n\n████░░░░░░ 40%",
-"Decrypting surprise...\n\n███████░░░ 70%",
-"Decrypting surprise...\n\n██████████ 100%\n\n✓ Complete"
-];
+id="answer"
 
-let i=0;
+placeholder="Type your answer">
 
-let interval=setInterval(()=>{
+<button id="checkBtn">
 
-d.innerText=frames[i];
+Check
 
-i++;
+</button>
 
-if(i===frames.length){
+<p id="error"></p>
 
-clearInterval(interval);
+</div>
 
-setTimeout(()=>{
+</section>
 
-document
-.getElementById("surpriseBtn")
-.classList
-.remove("hidden");
+<!-- =========================
+PAGE 3
+========================= -->
 
-},600);
+<section id="page3" class="page">
 
-}
+<div class="card">
 
-},700);
+<h2 id="welcome">
 
-}
+✨ Welcome, Princess of Agrabah. ✨
 
-</script>
+</h2>
+
+<div id="decrypt">
+
+<p>Decrypting surprise...</p>
+
+<div class="bar">
+
+<div class="fill"></div>
+
+</div>
+
+</div>
+
+<button id="surpriseBtn">
+
+🎁 Open Surprise
+
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
+
 </html>
