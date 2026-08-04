@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Wincy!</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    linear-gradient(rgba(10,30,40,.45), rgba(10,30,40,.45)),
+    url("background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.card{
+    width:90%;
+    max-width:500px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    border-radius:24px;
+    padding:35px;
+    text-align:center;
+    animation:fade .8s;
+    box-shadow:0 10px 35px rgba(0,0,0,.25);
+}
+
+.hidden{
+    display:none;
+}
+
+h1{
+    margin-bottom:18px;
+}
+
+p{
+    line-height:1.7;
+    font-size:18px;
+}
+
+button{
+    margin-top:30px;
+    border:none;
+    padding:14px 28px;
+    border-radius:50px;
+    background:#14c9c3;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+input{
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:none;
+    outline:none;
+    text-align:center;
+    font-size:18px;
+}
+
+.emojis{
+    font-size:42px;
+    margin:25px 0;
+}
+
+#easter{
+    font-size:24px;
+    color:#ffe98a;
+}
+
+#decrypt{
+    font-family:monospace;
+    font-size:20px;
+    line-height:2;
+    white-space:pre-line;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="card" id="page1">
+<h1>🎉 Happy Birthday, Wincy!</h1>
+
+<p>
+Wishing you a year full of positive energy ahead!<br><br>
+<b>Go shine ✨</b>
+</p>
+
+<button onclick="nextPage()">Continue →</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card hidden" id="page2">
+
+<h2>A tiny challenge...</h2>
+
+<p style="margin-top:18px;">
+Which Disney princess do these emojis represent?
+</p>
+
+<div class="emojis">
+🏰 🧞‍♂️ 🐅 ✨
+</div>
+
+<input
+id="answer"
+placeholder="Type your answer...">
+
+<button onclick="checkAnswer()">Check</button>
+
+<p id="wrong" style="color:#ffd1d1;margin-top:15px;"></p>
+
+</div>
+
+<!-- PAGE 3 -->
+<div class="card hidden" id="page3">
+
+<div id="easter">
+✨ Welcome, Princess of Agrabah. ✨
+</div>
+
+<div id="decrypt" class="hidden"></div>
+
+<button
+id="surpriseBtn"
+class="hidden"
+onclick="window.open('https://open.spotify.com/playlist/5jqM5FfQ0YQX5nlCCpXtgH?si=w2Eu7YoXSvWdhQ4o7HEZnA&utm_source=copy-link&pi=2mDQ5ivnQXqJX','_blank')">
+🎁 Open Surprise
+</button>
+
+</div>
+
+<script>
+
+function nextPage(){
+page1.classList.add("hidden");
+page2.classList.remove("hidden");
+}
+
+function checkAnswer(){
+
+let ans=document.getElementById("answer")
+.value
+.trim()
+.toLowerCase();
+
+if(
+ans==="jasmine" ||
+ans==="princess jasmine"
+){
+
+page2.classList.add("hidden");
+page3.classList.remove("hidden");
+
+setTimeout(startDecrypt,1000);
+
+}else{
+
+document.getElementById("wrong").innerHTML=
+"Try again 😊";
+
+}
+
+}
+
+function startDecrypt(){
+
+document.getElementById("easter").style.display="none";
+
+let d=document.getElementById("decrypt");
+
+d.classList.remove("hidden");
+
+const frames=[
+"Decrypting surprise...\n\n█░░░░░░░░░ 10%",
+"Decrypting surprise...\n\n████░░░░░░ 40%",
+"Decrypting surprise...\n\n███████░░░ 70%",
+"Decrypting surprise...\n\n██████████ 100%\n\n✓ Complete"
+];
+
+let i=0;
+
+let interval=setInterval(()=>{
+
+d.innerText=frames[i];
+
+i++;
+
+if(i===frames.length){
+
+clearInterval(interval);
+
+setTimeout(()=>{
+
+document
+.getElementById("surpriseBtn")
+.classList
+.remove("hidden");
+
+},600);
+
+}
+
+},700);
+
+}
+
+</script>
+
+</body>
+</html>
